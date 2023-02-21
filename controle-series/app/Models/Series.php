@@ -11,19 +11,15 @@ class Series extends Model
     use HasFactory;
     protected $fillable = ['nome'];
 
-    public function season()
+    public function seasons()
     {
         return $this->hasMany(Season::class, 'series_id');
     }
 
-    /**
-     * @return array
-     */
-
     protected static function booted()
     {
-        self::addGlobalScope('ordered', function (Builder $queryBuilder){
-           $queryBuilder->orderBy('nome');
+        self::addGlobalScope('ordered', function (Builder $queryBuilder) {
+            $queryBuilder->orderBy('nome');
         });
     }
 }
